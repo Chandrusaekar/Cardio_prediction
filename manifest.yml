@@ -5,5 +5,5 @@ applications:
  disk_quota: 1.7GB
  random-route: true
  parameters:
-  memory: 1024M
+  memory: 1024MB
   buildpack: 'python_buidpack'
