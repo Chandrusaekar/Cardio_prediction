@@ -1,7 +1,11 @@
 import numpy as np
+from wsgiref import simple_server
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS, cross_origin
 import pickle
 
+
+@cross_origin()
 app = Flask(__name__)
 model = pickle.load(open('model_01.pkl', 'rb'))
 
@@ -29,5 +33,10 @@ def results():
     output = prediction[0]
     return jsonify(output)
 
+port = int(os.getenv("PORT"))
 if __name__ == "__main__":
-    app.run(debug=False)
+    host = '0.0.0.0'
+    port = 5000
+    httpd = simple_server.make_server(host, port, app)
+    print("Serving on %s %d" % (host, port))
+    httpd.serve_forever()
