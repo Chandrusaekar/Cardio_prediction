@@ -4,10 +4,13 @@ from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS, cross_origin
 import pickle
 
+os.putenv('LANG', 'en_US.UTF-8')
+os.putenv('LC_ALL', 'en_US.UTF-8')
 
 @cross_origin()
 app = Flask(__name__)
-model = pickle.load(open('model_01.pkl', 'rb'))
+CORS(app)
+
 
 @app.route('/')
 def home():
@@ -35,6 +38,7 @@ def results():
 
 port = int(os.getenv("PORT"))
 if __name__ == "__main__":
+    model = pickle.load(open('model_01.pkl', 'rb'))
     host = '0.0.0.0'
     #port = 5000
     httpd = simple_server.make_server(host, port, app)
