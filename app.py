@@ -3,10 +3,7 @@ from wsgiref import simple_server
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS, cross_origin
 import pickle
-import os
 
-os.putenv('LANG', 'en_US.UTF-8')
-os.putenv('LC_ALL', 'en_US.UTF-8')
 
 #@cross_origin()
 app = Flask(__name__)
@@ -37,8 +34,6 @@ def results():
     output = prediction[0]
     return jsonify(output)
 
-port = int(os.getenv("PORT"))
+#port = int(os.getenv("PORT"))
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=port, debug=True)
-	print('************started*********')
-	#app.run(debug=True)
+	app.run(debug=True)
