@@ -38,9 +38,6 @@ def results():
 
 port = int(os.getenv("PORT"))
 if __name__ == "__main__":
-    model = pickle.load(open('model_01.pkl', 'rb'))
-    host = '0.0.0.0'
-    #port = 5000
-    httpd = simple_server.make_server(host, port, app)
-    print("Serving on %s %d" % (host, port))
-    httpd.serve_forever()
+    if __name__ == "__main__":
+    #app.run(host='127.0.0.1', port=8001, debug=True)
+	app.run(debug=True)
