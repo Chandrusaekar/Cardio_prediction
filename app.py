@@ -19,12 +19,8 @@ def home():
 @app.route('/predict',methods=['POST'])
 def predict():
     int_features = [int(x) for x in request.form.values()]
-	print(int_feature)
     final_features = [np.array(int_features)]
-	print('************')
-	print(final_features)
     prediction = model.predict(final_features)
-    print(prediction)
     output = prediction[0]
 
     return render_template('index1.html', prediction_text='Cardio - {}'.format(output))
