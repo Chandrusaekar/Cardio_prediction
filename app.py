@@ -7,7 +7,7 @@ import pickle
 
 #@cross_origin()
 app = Flask(__name__)
-CORS(app)
+
 
 
 @app.route('/')
@@ -36,4 +36,6 @@ def results():
 
 #port = int(os.getenv("PORT"))
 if __name__ == "__main__":
+	# load model
+	model = pickle.load(open('model_01.pkl','rb'))
 	app.run(debug=True)
