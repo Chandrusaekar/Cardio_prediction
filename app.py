@@ -8,17 +8,21 @@ import pickle
 #@cross_origin()
 app = Flask(__name__)
 
+# load model
+model = pickle.load(open('model_01.pkl','rb'))
 
 
 @app.route('/')
 def home():
     return render_template('index1.html')
 
-@app.route('/predict',methods=['POST','Get'])
+@app.route('/predict',methods=['POST'])
 def predict():
-
     int_features = [int(x) for x in request.form.values()]
+	print(int_feature)
     final_features = [np.array(int_features)]
+	print('************')
+	print(final_features)
     prediction = model.predict(final_features)
     print(prediction)
     output = prediction[0]
@@ -36,6 +40,4 @@ def results():
 
 #port = int(os.getenv("PORT"))
 if __name__ == "__main__":
-	# load model
-	model = pickle.load(open('model_01.pkl','rb'))
 	app.run(debug=True)
